@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Departmental Events & Clubs Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f3f5fb;
+      color: #222;
+      line-height: 1.5;
+    }
+
+    header {
+      background: #222b45;
+      color: #fff;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 16px;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      padding: 40px 32px 30px;
+      text-align: center;
+      background: linear-gradient(135deg, #222b45, #4d6fff);
+      color: #fff;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 18px;
+      font-size: 0.98rem;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #fff;
+      color: #222b45;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .hero button:hover {
+      opacity: 0.9;
+    }
+
+    main {
+      padding: 24px 32px 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h3.section-title {
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+      color: #222b45;
+      border-left: 4px solid #4d6fff;
+      padding-left: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 16px 16px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h4 {
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #222b45;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: #e5e9ff;
+      color: #222b45;
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      font-size: 0.78rem;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.86rem;
+      margin-bottom: 6px;
+    }
+
+    .btn-small {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      background: #4d6fff;
+      color: #fff;
+    }
+
+    .btn-small:hover {
+      opacity: 0.9;
+    }
+
+    /* Registration Form */
+    .form-wrapper {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px 18px 18px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .form-group {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 0.82rem;
+      margin-bottom: 4px;
+      color: #444;
+    }
+
+    input, select, textarea {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .submit-btn {
+      margin-top: 6px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 18px;
+      background: #222b45;
+      color: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 14px 6px 18px;
+      color: #666;
+    }
+
+    footer span {
+      font-weight: bold;
+      color: #222b45;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header h1 {
+        margin-bottom: 8px;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 12px;
+      }
+
+      .hero {
+        padding: 28px 18px;
+      }
+
+      main {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <h1>Dept. Events & Clubs Portal</h1>
+    <nav>
+      <a href="#events">Events</a>
+      <a href="#clubs">Clubs</a>
+      <a href="#register">Register</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Welcome to the Departmental Events & Clubs Portal</h2>
+    <p>
+      Stay updated with all technical, cultural and academic activities of the department.
+      Explore upcoming events, join student clubs and boost your skills.
+    </p>
+    <button onclick="scrollToSection('register')">Join an Event / Club</button>
+  </section>
+
+  <main>
+
+    <!-- Upcoming Events -->
+    <section id="events">
+      <h3 class="section-title">Upcoming Events</h3>
+      <div class="grid">
+        <div class="card">
+          <span class="badge">Technical</span>
+          <h4>Web Development Workshop</h4>
+          <p class="meta">Date: 20 Jan 2026 &nbsp;|&nbsp; Venue: Seminar Hall</p>
+          <p>Hands-on session on HTML, CSS and JavaScript for beginners.</p>
+          <button class="btn-small" onclick="prefill('Web Development Workshop')">Register</button>
+        </div>
+
+        <div class="card">
+          <span class="badge">Cultural</span>
+          <h4>Department Cultural Fest</h4>
+          <p class="meta">Date: 28 Jan 2026 &nbsp;|&nbsp; Venue: Open Auditorium</p>
+          <p>Showcase your talent in dance, music, drama and more.</p>
+          <button class="btn-small" onclick="prefill('Department Cultural Fest')">Register</button>
+        </div>
+
+        <div class="card">
+          <span class="badge">Academic</span>
+          <h4>Guest Lecture on AI</h4>
+          <p class="meta">Date: 5 Feb 2026 &nbsp;|&nbsp; Venue: Conference Room</p>
+          <p>Talk by industry expert on Artificial Intelligence applications.</p>
+          <button class="btn-small" onclick="prefill('Guest Lecture on AI')">Register</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clubs Section -->
+    <section id="clubs">
+      <h3 class="section-title">Student Clubs</h3>
+      <div class="grid">
+        <div class="card">
+          <span class="badge">Technical Club</span>
+          <h4>Coding & Innovation Club</h4>
+          <p>Organizes coding contests, hackathons, project showcases and technical meetups.</p>
+          <p class="meta">Faculty Coordinator: Dr. XYZ</p>
+          <button class="btn-small" onclick="prefill('Coding & Innovation Club')">Join Club</button>
+        </div>
+
+        <div class="card">
+          <span class="badge">Cultural Club</span>
+          <h4>Art & Cultural Club</h4>
+          <p>Encourages cultural activities like dance, music, drama, art and literature.</p>
+          <p class="meta">Faculty Coordinator: Prof. ABC</p>
+          <button class="btn-small" onclick="prefill('Art & Cultural Club')">Join Club</button>
+        </div>
+
+        <div class="card">
+          <span class="badge">Social Club</span>
+          <h4>Social Outreach Club</h4>
+          <p>Works on community service, awareness programs and social initiatives.</p>
+          <p class="meta">Faculty Coordinator: Prof. PQR</p>
+          <button class="btn-small" onclick="prefill('Social Outreach Club')">Join Club</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="register">
+      <h3 class="section-title">Event / Club Registration</h3>
+      <div class="form-wrapper">
+        <form onsubmit="showMessage(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="roll">Roll Number</label>
+              <input type="text" id="roll" name="roll" placeholder="e.g., 25951A1214" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="year">Year</label>
+              <select id="year" name="year" required>
+                <option value="">Select Year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="section">Section</label>
+              <input type="text" id="section" name="section" placeholder="e.g., IT-A / IT-B" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="type">Registration For</label>
+              <select id="type" name="type" required>
+                <option value="">Select Option</option>
+                <option value="Event">Event</option>
+                <option value="Club">Club</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="eventName">Event / Club Name</label>
+              <input type="text" id="eventName" name="eventName"
+                     placeholder="Enter or auto-filled name" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Remarks (optional)</label>
+            <textarea id="message" name="message"
+                      placeholder="Write any doubts or preferences here..."></textarea>
+          </div>
+
+          <button class="submit-btn" type="submit">Submit Registration</button>
+          <p id="status" style="font-size:0.85rem; margin-top:6px; color:green;"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact / Footer Info -->
+    <section id="contact">
+      <h3 class="section-title">Contact</h3>
+      <p style="font-size:0.9rem; margin-bottom:6px;">
+        For queries related to events and clubs, contact the departmental coordinator:
+      </p>
+      <p style="font-size:0.9rem;">
+        Email: dept.events@college.edu &nbsp; | &nbsp; Phone: +91-98765XXXXX
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; <span>Departmental Events & Clubs Portal</span> – Your gateway to campus activities.
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function prefill(name) {
+      document.getElementById('eventName').value = name;
+      scrollToSection('register');
+    }
+
+    function showMessage(e) {
+      e.preventDefault();
+      var status = document.getElementById('status');
+      status.textContent = "Your registration has been recorded (demo).";
+      e.target.reset();
+      document.getElementById('eventName').value = "";
+    }
+  </script>
+</body>
+</html>
